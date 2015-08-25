@@ -25,7 +25,18 @@ class Xml implements TypeInterface
             $domDocument->formatOutput = true;
         }
 
-        return $domDocument->saveXML();
+        $resultString = $domDocument->saveXML();
+
+        if (!$prettyPrint) {
+            $resultStringLines = explode(PHP_EOL, $resultString);
+            $documentLine = array_shift($resultStringLines);
+
+            $resultString = $documentLine . PHP_EOL . implode('', $resultStringLines);
+        } else {
+            $resultString = trim($resultString, PHP_EOL);
+        }
+
+        return $resultString;
     }
 
     /**

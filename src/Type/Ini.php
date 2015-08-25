@@ -28,7 +28,8 @@ class Ini implements TypeInterface
                 $resultString .= "$key = $value" . PHP_EOL;
             }
         }
-        return $resultString;
+
+        return trim($resultString, PHP_EOL);
     }
 
     /**
