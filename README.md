@@ -15,80 +15,41 @@ Super Object that can handle everything you throw at him...
 Via Composer
 
 ``` bash
-$ composer require masnathan/object
+$ composer require masnathan/parser
 ```
 
 ## Usage
 
 ``` php
-use MASNathan\Object;
+use MASNathan\Parser\Parser;
 
-$object = new Object();
-$object->setMode('live');
-$object->set('mode', 'live');
-$object->mode = 'live';
-$object['mode'] = 'live';
-
-echo $object->getAppMode() // 'live'
-echo $object->get('app_mode') // 'live'
-echo $object->app_mode // 'live'
-echo $object['mode'] // 'live'
-```
-
-So... let's suppose you have an array like this:
-
-```php
-$myBigDataArray = array(
-	'details' => array(
-		'first_name' => 'André',
-		'last_name' => 'Filipe',
-		'email' => 'andre.r.flip@gmail.com',
-		'social' => array(
-			'github' => 'https://github.com/MASNathan',
-			'twitter' => 'https://twitter.com/masnathan'
-		)
-	),
-	'account_info' => array(
-		'admin' => true,
-		'last_login' => 2015-06-13 13:37:00
-	)
-	'cart_items' => array(
-		array('id' => 1337),
-		// (...)
-	)
+$data = array(
+    'foo' => 'bar',
+    'sup' => 'World'
 );
+
+$content = Parser::data($data);
+$content->setPrettyOutput(true);
+
+echo $content->to('json'); // outputs in json format
+echo $content->to('xml'); // outputs in xml format
 ```
-Using the ```Object``` class you can acces it's information like this:
+
+And also...
 
 ```php
-$object = new Object($myBigDataArray);
+$content = Parser::file('path/to/my/file.json')->from('json');
 
-echo $object->getDetails()->getFirstName(); // 'André'
-$object->getDetails()->isLastName('Roque'); // false
-echo $object->getDetails()->getSocial()->getGithub(); // 'https://github.com/MASNathan'
-echo $object->getDetails()->getSocial()->getFacebook(); // ''
-$object->getAccountInfo()->isAdmin(); // true
-$object->getAccountInfo()->unsetLastLogin(); // unsets $myBigDataArray['account_info']['last_login']
+echo $content->to('xml'); // outputs in xml format
 
-foreach ($object->getCartItems() as $item) {
-	echo $item->getId(); // 1337
-}
-```
-
-You can also retrive the contents of the Object as an ```array``` or a ```StdClass```:
-
-```php
-$object->toArray(); // array( ... )
-$object->toObject(); // StdClass( ... )
-```
-And even serialize/ deserialize the object
-
-```php
-unserialize(serialize($object));
-// or as json
-json_decode(json_encode($object));
+// or
+echo Parser::file('path/to/my/file.xml')
+		->from('xml')
+		->setPrettyOutput(true)
+		->to('yaml');
 
 ```
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
