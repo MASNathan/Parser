@@ -9,9 +9,6 @@ use MASNathan\Parser\Parser;
  */
 class ContentTest extends \PHPUnit_Framework_TestCase
 {
-   
-
-
     public function encodeDecodeTemplates()
     {
         $dataSimple = array(
@@ -60,6 +57,7 @@ TEMPLATE;
             array(array('root' => $dataSimple), $templates['simple']['xml_pretty'], 'xml', true),
         );
     }
+    
     /**
      * @param $dataArray
      * @param $expectedString
