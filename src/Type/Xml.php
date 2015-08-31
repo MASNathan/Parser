@@ -18,7 +18,8 @@ class Xml implements TypeInterface
      */
     public static function encode($data, $prettyPrint = false, $xmlVersion = '1.0', $encoding = 'utf-8')
     {
-        $domDocument = self::loopEncode($data, null, $xmlVersion, $encoding);
+        $domDocument = new DOMDocument($xmlVersion, $encoding);
+        $domDocument = self::loopEncode($data, $domDocument);
         
         if ($prettyPrint) {
             $domDocument->preserveWhiteSpace = false;
@@ -40,19 +41,13 @@ class Xml implements TypeInterface
     }
 
     /**
-     * Lets create a DOMDocument
-     * @param  mixed           $data       Data to encode
-     * @param  DOMElement|null $domElement Element, if there is on created
-     * @param  string          $xmlVersion XML header version
-     * @param  string          $encoding   XML header encoding
-     * @return string
+     * Lets loop through our data
+     * @param  mixed                  $data       Data to encode
+     * @param  DOMDocument|DOMElement $domElement Document to initialize and then it'll call itself with inner Element(s)
+     * @return DOMDocument
      */
-    protected static function loopEncode($data, DOMElement $domElement = null, $xmlVersion = '1.0', $encoding = 'utf-8')
+    protected static function loopEncode($data, $domElement)
     {
-        if (is_null($domElement)) {
-            $domElement = new DOMDocument($xmlVersion, $encoding);
-        }
-
         if (is_array($data)) {
             foreach ($data as $index => $mixedElement) {
                 if (is_int($index)) {
@@ -93,7 +88,7 @@ class Xml implements TypeInterface
     /**
      * Turns all the objects into arrays
      * @param  mixed $data Data
-     * @return array|string
+     * @return array
      */
     protected static function loopDecode($data)
     {

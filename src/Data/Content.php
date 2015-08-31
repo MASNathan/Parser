@@ -32,7 +32,7 @@ class Content
      * Sets the original content
      * @param string $content Content
      */
-    public function __construct($content = null)
+    public function __construct($content = array())
     {
         if (is_string($content)) {
             $this->string = $content;
