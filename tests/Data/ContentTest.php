@@ -72,7 +72,6 @@ TEMPLATE;
         $contentArray->setPrettyOutput($ouputPretty);
 
         $dataString = $contentArray->to($format);
-        dump($expectedString, $dataString, $format, $ouputPretty);
         $this->assertEquals($expectedString, $dataString);
         
         $contentString = Parser::data($dataString)->from($format);

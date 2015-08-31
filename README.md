@@ -8,7 +8,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/masnathan/parser.svg?style=flat-square)](https://packagist.org/packages/masnathan/parser)
 [![Support via Gittip](https://img.shields.io/gittip/ReiDuKuduro.svg?style=flat-square)](https://gratipay.com/~ReiDuKuduro/)
 
-Super Object that can handle everything you throw at him...
+Global data type parser
 
 ## Install
 
