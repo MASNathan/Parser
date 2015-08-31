@@ -2,6 +2,8 @@
 
 namespace MASNathan\Parser\Type;
 
+use Camspiers\JsonPretty\JsonPretty;
+
 class Json implements TypeInterface
 {
     /**
@@ -13,7 +15,13 @@ class Json implements TypeInterface
     public static function encode($data, $prettyPrint = false)
     {
         if ($prettyPrint) {
-            return json_encode($data, JSON_PRETTY_PRINT);
+            // Check if the PHP version is >= 5.4 and has the JSON_PRETTY_PRINT constant
+            if (version_compare(PHP_VERSION, '5.4.0', '>=') && defined('JSON_PRETTY_PRINT')) {
+                return json_encode($data, JSON_PRETTY_PRINT);
+            } else {
+                $jsonPretty = new JsonPretty();
+                return $jsonPretty->prettify($data, null, '    ');
+            }
         }
 
         return json_encode($data);
