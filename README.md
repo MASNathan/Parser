@@ -6,7 +6,7 @@
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/masnathan/parser.svg?style=flat-square)](https://scrutinizer-ci.com/g/masnathan/parser/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/masnathan/parser.svg?style=flat-square)](https://scrutinizer-ci.com/g/masnathan/parser)
 [![Total Downloads](https://img.shields.io/packagist/dt/masnathan/parser.svg?style=flat-square)](https://packagist.org/packages/masnathan/parser)
-[![Support via Gittip](https://img.shields.io/gittip/ReiDuKuduro.svg?style=flat-square)](https://gratipay.com/~ReiDuKuduro/)
+[![Support via Gittip](https://img.shields.io/gittip/MASNathan.svg?style=flat-square)](https://gratipay.com/~MASNathan/)
 
 Global data type parser
 
